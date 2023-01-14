@@ -18,7 +18,7 @@ const server = Fastify({ logger: true });
 
 server.get("/get-ss", async (_request, reply) => {
   try {
-    const stream = fs.createReadStream("./screenshot.jpg");
+    const stream = fs.createReadStream(constants.ss_name);
     reply.type("image/jpeg");
     reply.send(stream);
     return reply;
