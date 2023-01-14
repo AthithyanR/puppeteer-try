@@ -7,7 +7,7 @@ export class Puppy {
 
     async init() {
         this.#browser = await puppeteer.launch()
-        this.#page = Object.freeze(await this.#browser.newPage())
+        this.#page = await this.#browser.newPage()
     }
 
     static async create() {
