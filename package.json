@@ -6,8 +6,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon --inspect index.js"
+    "start": "pm2 start index.js --name \"puppeteer-app\" -i max",
+    "dev": "pm2-dev index.js",
+    "stop-all": "pm2 stop all",
+    "list-all": "pm2 list all",
+    "delete-all": "pm2 delete all"
   },
   "keywords": [],
   "author": "Athithyan R",
@@ -15,6 +18,7 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "fastify": "^4.11.0",
+    "pm2": "^5.2.2",
     "puppeteer": "^19.5.2"
   }
 }
