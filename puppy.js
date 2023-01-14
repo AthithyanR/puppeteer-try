@@ -26,12 +26,6 @@ export class Puppy {
         return this.page.setViewport({ ...this.#defaultViewport, ...viewport })
     }
 
-    screenshot(path = 'screenshot.jpg') {
-        return this.page.screenshot({
-            path
-        });
-    }
-
     close() {
         return this.#browser.close()
     }
