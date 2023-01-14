@@ -1,12 +1,13 @@
 import { Puppy } from "./puppy.js";
 
-const puppy = await Puppy.create();
-
 export class Bot {
   // 60mins!!!
   // #afterEvery = 60 * 60 * 1000;
   #afterEvery = 5 * 1000;
-  constructor() {
+  #puppy;
+
+  static async spawn() {
+    this.#puppy = await Puppy.create();
     this.#runJob();
   }
 

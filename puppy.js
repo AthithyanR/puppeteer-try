@@ -2,12 +2,12 @@ import puppeteer from "puppeteer"
 
 export class Puppy {
     #browser
-    page
+    #page
     #defaultViewport = { width: 1280, height: 720 }
 
     async init() {
         this.#browser = await puppeteer.launch()
-        this.page = Object.freeze(await this.#browser.newPage())
+        this.#page = Object.freeze(await this.#browser.newPage())
     }
 
     static async create() {
@@ -16,14 +16,16 @@ export class Puppy {
         return newPuppy
     }
 
+    getPage() { return Object.freeze(this.#page) }
+
     async goto(url, opts = {}) {
         const { props = {}, viewport } = opts
-        await this.page.goto(url, props)
+        await this.#page.goto(url, props)
         await this.setViewport(viewport)
     }
 
     setViewport(viewport = {}) {
-        return this.page.setViewport({ ...this.#defaultViewport, ...viewport })
+        return this.#page.setViewport({ ...this.#defaultViewport, ...viewport })
     }
 
     close() {

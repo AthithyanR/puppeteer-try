@@ -33,7 +33,7 @@ server.get("/get-ss", async (_request, reply) => {
 server.put("/update-ss", async () => {
   try {
     const puppy = await Puppy.create();
-    const { page } = puppy
+    const page = puppy.getPage()
     await puppy.goto(constants.taget_url, { props: constants.puppy_goto_props });
     await page.screenshot({ path: constants.ss_name });
     await puppy.close();
