@@ -11,10 +11,12 @@ console.log("loaded env file");
 import Fastify from "fastify";
 import fs from "fs";
 
-import { Puppy } from "./puppy.js";
-import { constants } from "./utils.js";
-
 const server = Fastify({ logger: true });
+global.log = server.log
+
+import { Puppy } from "./puppy.js";
+import { Bot } from "./bot.js";
+import { constants } from "./utils.js";
 
 server.get("/get-ss", async (_request, reply) => {
   try {
@@ -31,8 +33,9 @@ server.get("/get-ss", async (_request, reply) => {
 server.put("/update-ss", async () => {
   try {
     const puppy = await Puppy.create();
-    await puppy.goto(constants.url, { props: constants.props });
-    await puppy.ss(constants.ss_name);
+    const { page } = puppy
+    await puppy.goto(constants.taget_url, { props: constants.puppy_goto_props });
+    await page.screenshot({ path: constants.ss_name });
     await puppy.close();
     return { message: "updated" };
   } catch (err) {
@@ -41,12 +44,25 @@ server.put("/update-ss", async () => {
   }
 });
 
+// should crawl for content
+server.put("/temp", async () => {
+  try {
+
+  } catch (err) {
+    server.log.error(err);
+    throw err;
+  }
+});
+
 const startListening = async () => {
   try {
+    // wake up the bot
+    // new Bot()
     await server.listen({ port: +process.env.PORT });
   } catch (err) {
     server.log.error(err);
     process.exit(1);
   }
 };
+
 startListening();

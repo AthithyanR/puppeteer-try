@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "start": "pm2 start index.js --name \"puppeteer-app\" -i max",
-    "dev": "pm2-dev index.js",
+    "dev": "pm2-dev index.js --node-args=\"--inspect\"",
     "stop-all": "pm2 stop all",
     "list-all": "pm2 list all",
     "delete-all": "pm2 delete all"
