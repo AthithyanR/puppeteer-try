@@ -1,0 +1,20 @@
+{
+  "name": "puppeteer-try",
+  "version": "1.0.0",
+  "packageManager": "pnpm@7.21.0",
+  "description": "trying out puppeteer",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon --inspect index.js"
+  },
+  "keywords": [],
+  "author": "Athithyan R",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "fastify": "^4.11.0",
+    "puppeteer": "^19.5.2"
+  }
+}
