@@ -1,12 +1,11 @@
 Object.assign(global, {
   components: {},
-  log: (...args) => console.log(...args),
 });
 
 //load env
 import dotenv from "dotenv";
 dotenv.config();
-global.log("loaded env file");
+console.log("loaded env file");
 
 // start server
 import Fastify from "fastify";
@@ -24,7 +23,7 @@ server.get("/get-ss", async (_request, reply) => {
     reply.send(stream);
     return reply;
   } catch (err) {
-    global.log(err);
+    server.log.error(err);
     throw err;
   }
 });
@@ -37,7 +36,7 @@ server.put("/update-ss", async () => {
     await puppy.close();
     return { message: "updated" };
   } catch (err) {
-    global.log(err);
+    server.log.error(err);
     throw err;
   }
 });
